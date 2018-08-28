@@ -1,0 +1,54 @@
+{
+  "root": true,
+  "extends": "eslint:recommended",
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "ecmaVersion": 8
+  },
+  "env": {
+      "browser": true
+  },
+  "globals": {
+      "Promise": true,
+      "Symbol": true,
+      "Set": true,
+      "Map": true,
+      "WeakMap": true,
+      "WeakSet": true,
+      "$": true,
+      "jQuery": true,
+      "angular": true,
+      "define": true,
+      "require": true,
+      "Hualala": true,
+      "_": true,
+      "md5": true,
+      "IX": true,
+      "$X": true,
+      "$XA": true,
+      "$XD": true,
+      "$XE": true,
+      "$XF": true,
+      "$XH": true,
+      "$XP": true,
+      "Pymatch": true,
+      "console": true,
+      "HLLShell": true
+  },
+  "rules": {
+      "indent": ["off", 4],
+      "no-console": "off",
+      "eqeqeq": "off",
+      "no-unused-vars": "off",
+      "no-extra-semi": "off",
+      "no-irregular-whitespace": "off",
+      "no-mixed-spaces-and-tabs": "off",
+      "no-duplicate-case": "off",
+      "no-fallthrough": "off",
+      "no-redeclare": "off",
+      "no-useless-escape": "off",
+      "no-empty": "off",
+      "no-unreachable": "warn",
+      "no-control-regex": "off"
+  }
+}
