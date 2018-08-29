@@ -42,6 +42,12 @@ let webpackConf = {
         include: [path.resolve(__dirname, '../app')]
       },
       {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader'
+        }
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
