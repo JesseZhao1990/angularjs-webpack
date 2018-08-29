@@ -8,6 +8,6 @@ angular.module('app.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
-}]);
+.controller('View1Ctrl', function($scope) {
+  $scope.text = "Hello AngularJS!!!!";
+});

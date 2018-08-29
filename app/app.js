@@ -1,4 +1,3 @@
-// import angular from 'angular';
 import 'angular';
 import 'angular-route';
 
@@ -16,11 +15,6 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
 
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
-
-
-app.controller("HelloCtrl", function($scope) {
-    $scope.text = "Hello AngularJS!!!!";
-});
 
 angular.bootstrap(document, ['app']);
 
