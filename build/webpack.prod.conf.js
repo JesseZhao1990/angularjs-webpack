@@ -1,5 +1,4 @@
 /* eslint-disable */
-const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');  
 const ExtractTextPlugin = require("extract-text-webpack-plugin");  
@@ -9,7 +8,7 @@ let webpackConf = {
   mode:'none',
   // 配置入口文件
   entry:{
-    app: ['webpack-dev-server/client?http://localhost:8080/','webpack/hot/dev-server',path.join(__dirname, '../app/main.js')]
+    app: path.join(__dirname, '../app/main.js')
   },
   // 输出
   output: {
@@ -67,44 +66,40 @@ let webpackConf = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }),
       },      
       {
         test: /\.less$/,
-        use:[
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader'],
+        }),
       },
     ]
   },
   // 插件
   plugins:[
-    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin({
+     filename: 'static/css/[name].[hash:7].css'
+    }),
+    //设置每一次build之前先删除dist  
+    new CleanWebpackPlugin(  
+      ['dist/*',],　     //匹配删除的文件  
+      {  
+          // root: __dirname,   //根目录  
+          verbose: true,    //开启在控制台输出信息  
+          dry: false     //启用删除文件  
+      }  
+    ),
     new HtmlWebpackPlugin({
       filename: path.join(__dirname,`../dist/index.html`),
       template: path.join(__dirname,`../app/index.html`),
       inject: true
     })
-  ],
-  // 起本地服务
-  devServer: {  
-    contentBase: "../dist/",  
-    historyApiFallback: true,  
-    inline: true,  
-    hot: true,  
-    host: '127.0.0.1',
-    watchOptions:{
-      ignored:['node_modules'],
-      // 监听到文件发送变化后300毫秒之后再去执行动作，防止文件更新太快而导致重新编译的频率太快。
-      aggregateTimeout: 300,
-      poll:1000 // 每秒询问1000次
-    }
-  },
+  ] 
 }
 
 module.exports = webpackConf
